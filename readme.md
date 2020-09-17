@@ -12,7 +12,7 @@ react-native run-ios
 
 # Explanation
 
-There is a bug in Mapbox that causes an error on iOS when a cumulative padding of 64 or greater is applied to the camera. In addition, padding does not have any effect on the way bounds are centered on the screen on iOS.
+There is a bug in Mapbox that causes an error on iOS when a cumulative padding of `64` or greater is applied to the camera. In addition, padding does not have any effect on the way bounds are centered on the screen on iOS.
 
 The error that is thrown is:
 
