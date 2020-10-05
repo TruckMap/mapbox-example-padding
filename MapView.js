@@ -1,107 +1,56 @@
 import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
 import MapboxGL from '@react-native-mapbox-gl/maps';
 
 const latitude = 40.723279;
 const longitude = -73.970895;
-
 const boundsEdge = 0.002;
 
-/*
-The error is:
-
-Mapbox error [event]:General [code]:-1 [message]:Unable to calculate
-appropriate zoom level for bounds. Vertical or horizontal padding is
-greater than map's height or width.
-
-Tested on:
-
-- iOS Simulator, iPhone 11
-- iOS Simulator, iPhone SE
-- Android Emulator, Pixel 3 (API 30)
-*/
-
-// iOS: No error, but padding has no effect.
-// Android: No error, and padding works.
-const padding1 = {
-  paddingTop: 0,
-  paddingBottom: 0,
-};
-
-// iOS: No error, but padding has no effect.
-// Android: No error, and padding works.
-const padding2 = {
-  paddingTop: 0,
-  paddingBottom: 63,
-};
-
-// iOS: Error, and padding has no effect.
-// Android: No error, and padding works.
-const padding3 = {
-  paddingTop: 0,
-  paddingBottom: 64,
-};
-
-// iOS: Error, and padding has no effect.
-// Android: No error, and padding works.
-const padding4 = {
-  paddingTop: 1,
-  paddingBottom: 63,
-};
-
-// iOS: No error, but padding has no effect.
-// Android: No error, and padding works.
-const padding5 = {
-  paddingTop: 31,
-  paddingBottom: 32,
-};
-
-// iOS: Error, and padding has no effect.
-// Android: No error, and padding works.
-const padding6 = {
-  paddingTop: 32,
-  paddingBottom: 32,
-};
-
-const padding = padding1;
-
 class MapView extends React.Component {
-  static propTypes = {
-  };
-
   constructor(props) {
     super(props);
+
+    this.state = {
+      mapHeight: 0,
+      paddingBottom: 0,
+    };
   }
 
-  renderContents = () => {
+  renderButton = (text, onPress) => {
+    return (
+      <TouchableOpacity
+        style={{
+          flex: 1,
+          height: 40,
+          margin: 5,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'gray',
+        }}
+        onPress={onPress}
+      >
+        <Text>{text}</Text>
+      </TouchableOpacity>
+    );
+  }
+
+  render() {
+    const { mapHeight, paddingBottom } = this.state;
+
+    const padding = {
+      paddingTop: 0,
+      paddingBottom,
+    };
+
     const point = {
       "type": "Point",
-      "coordinates": [longitude, latitude]
+      "coordinates": [longitude, latitude],
     };
 
     return (
-      <MapboxGL.ShapeSource
-        id={'source'}
-        shape={point}
-      >
-        <MapboxGL.CircleLayer
-          id={'circle-big'}
-          style={{
-            circleRadius: 20,
-            circleColor: 'white',
-            circleStrokeColor: 'black',
-            circleStrokeWidth: 1,
-            iconAllowOverlap: true,
-            circlePitchScale: 'viewport',
-          }}
-        />
-      </MapboxGL.ShapeSource>
-    );
-  };
-
-  render() {
-    return (
       <MapboxGL.MapView
         ref={(c) => (this._map = c)}
+        onLayout={(e) => this.setState({ mapHeight: e.nativeEvent.layout.height })}
         onPress={this.onPress}
         style={{flex: 1}}
       >
@@ -114,7 +63,34 @@ class MapView extends React.Component {
           }}
         />
 
-        {this.renderContents()}
+        <MapboxGL.ShapeSource
+          id={'source'}
+          shape={point}
+        >
+          <MapboxGL.CircleLayer
+            id={'circle'}
+            style={{
+              circleRadius: 10,
+              circleColor: 'green',
+              circleStrokeColor: 'black',
+              circleStrokeWidth: 1,
+            }}
+          />
+        </MapboxGL.ShapeSource>
+
+        <View style={{
+          flex: 0,
+          flexDirection: 'row',
+          position: 'absolute',
+          bottom: 0,
+          padding: 30,
+          width: '100%',
+        }}>
+          {this.renderButton('0', () => this.setState({ paddingBottom: 0 }))}
+          {this.renderButton('Height / 4', () => this.setState({ paddingBottom: mapHeight / 4 }))}
+          {this.renderButton('Height / 2', () => this.setState({ paddingBottom: mapHeight / 2 }))}
+          {this.renderButton('Height', () => this.setState({ paddingBottom: mapHeight }))}
+        </View>
       </MapboxGL.MapView>
     );
   }

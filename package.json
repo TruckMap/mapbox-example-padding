@@ -11,7 +11,7 @@
     "postinstall": "cd ios && pod install && cd .."
   },
   "dependencies": {
-    "@react-native-mapbox-gl/maps": "https://github.com/react-native-mapbox-gl/maps#master",
+    "@react-native-mapbox-gl/maps": "github:react-native-mapbox-gl/maps#mfazekas/fix-boudnsPadding-ios",
     "react": "16.13.1",
     "react-native": "0.63.2"
   },
