@@ -13,4 +13,4 @@ react-native run-ios
 
 A bug in the camera results in padding being incorrectly applied to the map.
 
-[![Example](./files/demo.gif)]
+![Example](./files/demo.gif | width=300)
