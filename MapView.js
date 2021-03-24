@@ -4,7 +4,6 @@ import MapboxGL from '@react-native-mapbox-gl/maps';
 
 const latitude = 40.723279;
 const longitude = -73.970895;
-const boundsEdge = 0.002;
 
 class MapView extends React.Component {
   constructor(props) {
@@ -12,7 +11,6 @@ class MapView extends React.Component {
 
     this.state = {
       mapHeight: 0,
-      paddingBottom: 0,
     };
   }
 
@@ -35,13 +33,6 @@ class MapView extends React.Component {
   }
 
   render() {
-    const { mapHeight, paddingBottom } = this.state;
-
-    const padding = {
-      paddingTop: 0,
-      paddingBottom,
-    };
-
     const point = {
       "type": "Point",
       "coordinates": [longitude, latitude],
@@ -50,17 +41,12 @@ class MapView extends React.Component {
     return (
       <MapboxGL.MapView
         ref={(c) => (this._map = c)}
-        onLayout={(e) => this.setState({ mapHeight: e.nativeEvent.layout.height })}
+        onLayout={(e) => {}}
         onPress={this.onPress}
         style={{flex: 1}}
       >
         <MapboxGL.Camera
           zoomLevel={9}
-          bounds={{
-            ne: [longitude - boundsEdge, latitude + boundsEdge],
-            sw: [longitude + boundsEdge, latitude - boundsEdge],
-            ...padding,
-          }}
         />
 
         <MapboxGL.ShapeSource
@@ -86,10 +72,7 @@ class MapView extends React.Component {
           padding: 30,
           width: '100%',
         }}>
-          {this.renderButton('0', () => this.setState({ paddingBottom: 0 }))}
-          {this.renderButton('Height / 4', () => this.setState({ paddingBottom: mapHeight / 4 }))}
-          {this.renderButton('Height / 2', () => this.setState({ paddingBottom: mapHeight / 2 }))}
-          {this.renderButton('Height', () => this.setState({ paddingBottom: mapHeight }))}
+          TODO
         </View>
       </MapboxGL.MapView>
     );
