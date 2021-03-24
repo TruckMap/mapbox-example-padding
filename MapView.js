@@ -1,14 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { Animated, Easing } from 'react-native';
+
 import MapboxGL from '@react-native-mapbox-gl/maps';
+const { ShapeSource, AnimatedPoint } = MapboxGL;
+const AnimatedShapeSource = Animated.createAnimatedComponent(ShapeSource);
+
+const increment = 0.001;
+const duration = 1000;
 
 const MapView = () => {
-  const latitude = 40.723279;
-  const longitude = -73.970895;
+  const [coordinates, setCoordinates] = useState([-73.970895, 40.723279]);
+  const point = { type: "Point", coordinates };
+  const animatedPoint = useRef(new AnimatedPoint(point)).current;
 
-  const centerPoint = {
-    "type": "Point",
-    "coordinates": [longitude, latitude],
+  const tick = () => {
+    const coordinatesNext = [coordinates[0] + increment, coordinates[1] + increment];
+    setCoordinates(coordinatesNext);
+    animatedPoint.timing({
+      coordinates: coordinatesNext,
+      easing: Easing.linear,
+      duration: duration,
+      useNativeDriver: false,
+    }).start();
   };
+
+  useEffect(() => {
+    setTimeout(tick, duration);
+  }, coordinates);
 
   return (
     <MapboxGL.MapView
@@ -17,13 +35,14 @@ const MapView = () => {
       style={{ flex: 1 }}
     >
       <MapboxGL.Camera
-        centerCoordinate={centerPoint.coordinates}
-        zoomLevel={9}
+        centerCoordinate={coordinates}
+        zoomLevel={15}
+        animationDuration={duration}
       />
 
-      <MapboxGL.ShapeSource
+      <AnimatedShapeSource
         id={'circleSource'}
-        shape={centerPoint}
+        shape={animatedPoint}
       >
         <MapboxGL.CircleLayer
           id={'circleLayer'}
@@ -34,7 +53,7 @@ const MapView = () => {
             circleStrokeWidth: 2,
           }}
         />
-      </MapboxGL.ShapeSource>
+      </AnimatedShapeSource>
     </MapboxGL.MapView>
   );
 }
