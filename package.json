@@ -1,5 +1,5 @@
 {
-  "name": "MapPitch",
+  "name": "map",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -8,10 +8,10 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "postinstall": "cd ios && pod install && cd .."
+    "postinstall": "cd ios && bundle install && bundle exec pod install && cd .."
   },
   "dependencies": {
-    "@react-native-mapbox-gl/maps": "github:react-native-mapbox-gl/maps#mfazekas/fix-boudnsPadding-ios",
+    "@react-native-mapbox-gl/maps": "^8.2.0-beta1",
     "react": "16.13.1",
     "react-native": "0.63.2"
   },
