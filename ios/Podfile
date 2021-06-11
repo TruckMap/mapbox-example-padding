@@ -7,9 +7,6 @@ target 'MapPadding' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
-
-  # Flipper (will not work if use_frameworks! is enabled)
-  use_flipper!({ 'Flipper-Folly' => '2.3.0' })
   
   # Mapbox
   $ReactNativeMapboxGLIOSVersion = '6.2.1'
@@ -34,12 +31,10 @@ target 'MapPadding' do
   end
 
   post_install do |installer|
-    flipper_post_install(installer)
-
     installer.pods_project.build_configurations.each do |config|
       # Fixes issue where on ARM-based Macs, Xcode builds targeted for the Simulator
       # fail because the arm64 architecture is unsupported. 'Debug' corresponds to
-      # the configuration set in Xcode > TruckMap project > Info tab > Configurations.
+      # the configuration set in Xcode > [Main target] > Info tab > Configurations.
       if config.name == 'Debug'
         config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
       end
