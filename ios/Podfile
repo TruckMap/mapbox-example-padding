@@ -9,7 +9,7 @@ target 'MapPadding' do
   use_react_native!(:path => config["reactNativePath"])
   
   # Mapbox
-  $ReactNativeMapboxGLIOSVersion = '6.3.0'
+  $ReactNativeMapboxGLIOSVersion = '6.3.0' # '6.2.1' works
   pod 'react-native-mapbox-gl', :path => '../node_modules/@react-native-mapbox-gl/maps'
 
   target 'MapPaddingTests' do
