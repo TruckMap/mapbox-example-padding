@@ -6,35 +6,25 @@ platform :ios, '10.0'
 target 'MapPadding' do
   config = use_native_modules!
 
+  # React Native
   use_react_native!(:path => config["reactNativePath"])
-  
+
   # Mapbox
   $ReactNativeMapboxGLIOSVersion = '6.3.0' # '6.2.1' works
-  pod 'react-native-mapbox-gl', :path => '../node_modules/@react-native-mapbox-gl/maps'
 
-  target 'MapPaddingTests' do
-    inherit! :complete
-    # Pods for testing
-  end
-
-  # Fix Mapbox pod causing malformed archives.
-  # https://github.com/react-native-mapbox-gl/maps/issues/1097#issuecomment-781647269
-  ENV['REACT_NATIVE_MAPBOX_GL_USE_FRAMEWORKS'] = 'true'
   pre_install do |installer|
-    installer.pod_targets.each do |pod|
-      if pod.name == 'MapboxMobileEvents'
-        def pod.build_type;
-          Pod::BuildType.dynamic_framework
-        end
-      end
-    end
+    # Mapbox
+    $RNMBGL.pre_install(installer)
   end
 
   post_install do |installer|
+    # Mapbox
+    $RNMBGL.post_install(installer)
+
+    # Fixes issue where on ARM-based Macs, Xcode builds targeted for the Simulator
+    # fail because the arm64 architecture is unsupported. 'Debug' corresponds to
+    # the configuration set in Xcode > [Main project] > Info tab > Configurations.
     installer.pods_project.build_configurations.each do |config|
-      # Fixes issue where on ARM-based Macs, Xcode builds targeted for the Simulator
-      # fail because the arm64 architecture is unsupported. 'Debug' corresponds to
-      # the configuration set in Xcode > [Main target] > Info tab > Configurations.
       if config.name == 'Debug'
         config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
       end

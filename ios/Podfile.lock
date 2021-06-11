@@ -211,7 +211,12 @@ PODS:
     - React
     - React-Core
     - react-native-mapbox-gl/DynamicLibrary (= 8.2.0-beta2)
+    - react-native-mapbox-gl/StaticLibraryFixer (= 8.2.0-beta2)
   - react-native-mapbox-gl/DynamicLibrary (8.2.0-beta2):
+    - Mapbox-iOS-SDK (= 6.3.0)
+    - React
+    - React-Core
+  - react-native-mapbox-gl/StaticLibraryFixer (8.2.0-beta2):
     - Mapbox-iOS-SDK (= 6.3.0)
     - React
     - React-Core
@@ -399,7 +404,7 @@ SPEC CHECKSUMS:
   React-jsi: 67747b9722f6dab2ffe15b011bcf6b3f2c3f1427
   React-jsiexecutor: 80c46bd381fd06e418e0d4f53672dc1d1945c4c3
   React-jsinspector: cc614ec18a9ca96fd275100c16d74d62ee11f0ae
-  react-native-mapbox-gl: 33c6eadc2dc9c6d03145dac16235395704948157
+  react-native-mapbox-gl: 120180f5a443fb41d00563c603609ae9d927a995
   React-perflogger: 25373e382fed75ce768a443822f07098a15ab737
   React-RCTActionSheet: af7796ba49ffe4ca92e7277a5d992d37203f7da5
   React-RCTAnimation: 6a2e76ab50c6f25b428d81b76a5a45351c4d77aa
@@ -414,6 +419,6 @@ SPEC CHECKSUMS:
   ReactCommon: 149906e01aa51142707a10665185db879898e966
   Yoga: 575c581c63e0d35c9a83f4b46d01d63abc1100ac
 
-PODFILE CHECKSUM: 61a924e677d99a26a9053d17627c18871250c23f
+PODFILE CHECKSUM: 2cb64c40538edc121d04abd00805faaadd17f303
 
 COCOAPODS: 1.10.1
