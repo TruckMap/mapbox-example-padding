@@ -11,7 +11,7 @@
     "postinstall": "cd ios && bundle install && bundle exec pod install && cd .."
   },
   "dependencies": {
-    "@react-native-mapbox-gl/maps": "^8.2.0-beta2",
+    "@react-native-mapbox-gl/maps": "git@github.com:react-native-mapbox-gl/maps.git#master",
     "react": "17.0.2",
     "react-native": "0.64.2"
   },

@@ -10,7 +10,7 @@ PODS:
     - React-jsi (= 0.64.2)
     - ReactCommon/turbomodule/core (= 0.64.2)
   - glog (0.3.5)
-  - Mapbox-iOS-SDK (6.2.1):
+  - Mapbox-iOS-SDK (6.3.0):
     - MapboxMobileEvents (~> 0.10.4)
   - MapboxMobileEvents (0.10.8)
   - RCT-Folly (2020.01.13.00):
@@ -207,12 +207,12 @@ PODS:
     - React-perflogger (= 0.64.2)
   - React-jsinspector (0.64.2)
   - react-native-mapbox-gl (8.2.0-beta2):
-    - Mapbox-iOS-SDK (= 6.2.1)
+    - Mapbox-iOS-SDK (= 6.3.0)
     - React
     - React-Core
     - react-native-mapbox-gl/DynamicLibrary (= 8.2.0-beta2)
   - react-native-mapbox-gl/DynamicLibrary (8.2.0-beta2):
-    - Mapbox-iOS-SDK (= 6.2.1)
+    - Mapbox-iOS-SDK (= 6.3.0)
     - React
     - React-Core
   - React-perflogger (0.64.2)
@@ -386,7 +386,7 @@ SPEC CHECKSUMS:
   FBLazyVector: e686045572151edef46010a6f819ade377dfeb4b
   FBReactNativeSpec: 3afdedefc9b82435324ad7d5a5c9e163098edfaa
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
-  Mapbox-iOS-SDK: c5a2ec3a3a0a77ee0ba78f91380e83898cb6aa41
+  Mapbox-iOS-SDK: 2563ed87ead6ec08f1c2090873977b8a7be335a8
   MapboxMobileEvents: 36ff53b135aac486eed94b61f813c7967a0c2c6f
   RCT-Folly: ec7a233ccc97cc556cf7237f0db1ff65b986f27c
   RCTRequired: 6d3e854f0e7260a648badd0d44fc364bc9da9728
@@ -399,7 +399,7 @@ SPEC CHECKSUMS:
   React-jsi: 67747b9722f6dab2ffe15b011bcf6b3f2c3f1427
   React-jsiexecutor: 80c46bd381fd06e418e0d4f53672dc1d1945c4c3
   React-jsinspector: cc614ec18a9ca96fd275100c16d74d62ee11f0ae
-  react-native-mapbox-gl: a4f590cd3962147e6427adb319fba57ec25355ba
+  react-native-mapbox-gl: 33c6eadc2dc9c6d03145dac16235395704948157
   React-perflogger: 25373e382fed75ce768a443822f07098a15ab737
   React-RCTActionSheet: af7796ba49ffe4ca92e7277a5d992d37203f7da5
   React-RCTAnimation: 6a2e76ab50c6f25b428d81b76a5a45351c4d77aa
@@ -414,6 +414,6 @@ SPEC CHECKSUMS:
   ReactCommon: 149906e01aa51142707a10665185db879898e966
   Yoga: 575c581c63e0d35c9a83f4b46d01d63abc1100ac
 
-PODFILE CHECKSUM: 69ecad9c2311f48bae8c9e48874806d43cab4fe6
+PODFILE CHECKSUM: 61a924e677d99a26a9053d17627c18871250c23f
 
 COCOAPODS: 1.10.1
